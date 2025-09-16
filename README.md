@@ -6,7 +6,7 @@ Modern, GDPR-compliant WordPress plugin built on [vanilla-cookieconsent v3.1.0](
 
 > **Built on:** [orestbida/cookieconsent](https://github.com/orestbida/cookieconsent) - the best open-source cookie consent library
 
-## 🚀 Key Features
+## Key Features
 
 ✅ **Anonymous consent tracking** - no IP address storage  
 ✅ **REST API architecture** - modern, secure communication  
@@ -17,7 +17,7 @@ Modern, GDPR-compliant WordPress plugin built on [vanilla-cookieconsent v3.1.0](
 ✅ **Proof shortcode** - `[eccm_consent_proof]` for consent verification  
 ✅ **Security** - HMAC hash, nonce protection, origin validation  
 
-## 📦 Installation
+## Installation
 
 1. Place plugin in `/wp-content/plugins/librecookieconsent/`
 2. Run build process:
@@ -54,10 +54,10 @@ gtag('consent', 'update', {
 ```
 
 **Výhody GTM režimu:**
-- ✅ Všechny tagy spravované centrálně v GTM
-- ✅ Google Consent Mode v2 nativní podpora
-- ✅ Enhanced Conversions a lepší data quality
-- ✅ Pokročilé targeting bez ztráty dat
+- Všechny tagy spravované centrálně v GTM
+- Google Consent Mode v2 nativní podpora
+- Enhanced Conversions a lepší data quality
+- Pokročilé targeting bez ztráty dat
 
 **Setup pro GTM:**
 1. Vyplňte GTM Container ID v nastavení pluginu
@@ -75,9 +75,9 @@ if (CookieConsent.acceptedCategory('analytics')) {
 ```
 
 **Výhody Direct režimu:**
-- ✅ Jednodušší setup bez nutnosti GTM
-- ✅ Přímá kontrola nad všemi skripty
-- ✅ Vhodné pro menší weby s základními potřebami
+- Jednodušší setup bez nutnosti GTM
+- Přímá kontrola nad všemi skripty
+- Vhodné pro menší weby s základními potřebami
 
 **Setup pro Direct:**
 1. Nechte GTM Container ID prázdné
