@@ -1,4 +1,4 @@
-# LibreCookieConsent
+# Cookie Consent for WordPress
 
 **EU-ready cookie consent plugin for WordPress**
 
@@ -8,34 +8,34 @@ Modern, GDPR-compliant WordPress plugin built on [vanilla-cookieconsent v3.1.0](
 
 ## Key Features
 
-✅ **Anonymous consent tracking** - no IP address storage  
-✅ **REST API architecture** - modern, secure communication  
-✅ **GDPR/ePrivacy compliance** - full legislative compliance  
-✅ **Google Consent Mode v2** - proper GA4/GTM integration  
-✅ **Audit & export** - complete consent overview for audits  
-✅ **Automatic retention** - cleanup old logs based on settings  
-✅ **Proof shortcode** - `[eccm_consent_proof]` for consent verification  
-✅ **Security** - HMAC hash, nonce protection, origin validation  
+- **Anonymous consent tracking** - no IP address storage  
+- **REST API architecture** - modern, secure communication  
+- **GDPR/ePrivacy compliance** - full legislative compliance  
+- **Google Consent Mode v2** - proper GA4/GTM integration  
+- **Audit & export** - complete consent overview for audits  
+- **Automatic retention** - cleanup old logs based on settings  
+- **Proof shortcode** - `[eccm_consent_proof]` for consent verification  
+- **Security** - HMAC hash, nonce protection, origin validation  
 
 ## Installation
 
-1. Place plugin in `/wp-content/plugins/librecookieconsent/`
-2. Run build process:
+1. Place the plugin in `/wp-content/plugins/librecookieconsent/`
+2. Run the build process:
 ```bash
 cd wp-content/plugins/librecookieconsent
 npm install
 npm run build
 ```
-3. Activate plugin in WordPress admin
-4. Configure in **Cookie Consent** menu
+3. Activate the plugin in WordPress admin
+4. Configure it in the **Cookie Consent** menu
 
 
-## Režimy fungování
+## Operating Modes
 
-### **GTM Režim** (doporučený pro profesionální weby)
+### **GTM Mode** (recommended for professional websites)
 
 ```javascript
-// 1. Consent Mode v2 se nastaví na "denied" PŘED načtením GTM
+// 1. Consent Mode v2 is set to "denied" BEFORE loading GTM
 gtag('consent', 'default', {
     'analytics_storage': 'denied',
     'ad_storage': 'denied',
@@ -43,79 +43,79 @@ gtag('consent', 'default', {
     'ad_personalization': 'denied'
 });
 
-// 2. GTM kontejner se načte ihned, ale tagy čekají na consent
+// 2. GTM container is loaded immediately, but tags wait for consent
 gtag('config', 'GTM-XXXXXXX');
 
-// 3. Po udělení souhlasu se consent aktualizuje a tagy se spustí
+// 3. After consent is given, consent is updated and tags are fired
 gtag('consent', 'update', {
-    'analytics_storage': 'granted',  // pokud uživatel souhlasil
-    'ad_storage': 'granted'         // pokud uživatel souhlasil
+    'analytics_storage': 'granted',  // if the user has consented
+    'ad_storage': 'granted'         // if the user has consented
 });
 ```
 
-**Výhody GTM režimu:**
-- Všechny tagy spravované centrálně v GTM
-- Google Consent Mode v2 nativní podpora
-- Enhanced Conversions a lepší data quality
-- Pokročilé targeting bez ztráty dat
+**Advantages of GTM mode:**
+- All tags managed centrally in GTM
+- Native support for Google Consent Mode v2
+- Enhanced Conversions and better data quality
+- Advanced targeting without data loss
 
-**Setup pro GTM:**
-1. Vyplňte GTM Container ID v nastavení pluginu
-2. V GTM nastavte "Consent Requirements" pro všechny tagy
-3. Plugin automaticky aktivuje GTM režim s Consent Mode v2
+**Setup for GTM:**
+1. Enter GTM Container ID in the plugin settings
+2. In GTM, set "Consent Requirements" for all tags
+3. The plugin automatically activates GTM mode with Consent Mode v2
 
-### **Direct Režim** (jednoduchý pro menší weby)
+### **Direct Mode** (simple for smaller websites)
 
 ```javascript
-// Žádné tracking skripty se nenačítají předem
-// Až po souhlasu se vkládají:
+// No tracking scripts are loaded in advance
+// Only after consent are they inserted:
 if (CookieConsent.acceptedCategory('analytics')) {
     gtag('config', 'GA_MEASUREMENT_ID');
 }
 ```
 
-**Výhody Direct režimu:**
-- Jednodušší setup bez nutnosti GTM
-- Přímá kontrola nad všemi skripty
-- Vhodné pro menší weby s základními potřebami
+**Advantages of Direct mode:**
+- Simpler setup without the need for GTM
+- Direct control over all scripts
+- Suitable for smaller websites with basic needs
 
-**Setup pro Direct:**
-1. Nechte GTM Container ID prázdné
-2. Vyplňte přímo GA4 ID, Meta Pixel ID, Clarity ID
-3. Plugin automaticky přepne na Direct režim
+**Setup for Direct:**
+1. Leave GTM Container ID empty
+2. Enter GA4 ID, Meta Pixel ID, Clarity ID directly
+3. The plugin automatically switches to Direct mode
 
-## Shortcodes pro uživatele
+## Shortcodes for users
 
 ```php
 [eccm_consent_proof]
-// Zobrazí: čas souhlasu, kategorie, anonymní identifikátor
+// Displays: consent time, categories, anonymous identifier
 
 [eccm_consent_proof show_hash="false"]
-// Bez zobrazení technických detailů
+// Without displaying technical details
 
 [eccm_consent_form]
-// Tlačítko "Změnit nastavení cookies"
+// "Change cookie settings" button
 ```
 
 ## Best Practices
 
-### Pro GTM režim
-1. Nastavte Built-in Variables: "Consent State - Analytics", "Consent State - Ad Storage"
-2. Použijte Consent Requirements pro všechny tracking tagy
-3. Implementujte Enhanced Conversions pro lepší data quality
+### For GTM mode
+1. Set up Built-in Variables: "Consent State - Analytics", "Consent State - Ad Storage"
+2. Use Consent Requirements for all tracking tags
+3. Implement Enhanced Conversions for better data quality
 
-### Pro Direct režim  
-1. Definujte vlastní skripty v "Skripty podle kategorií"
-2. Používejte `data-category` atributy pro blokování skriptů
-3. Implementujte fallback pro uživatele bez JS
+### For Direct mode  
+1. Define custom scripts in "Scripts by category"
+2. Use `data-category` attributes to block scripts
+3. Implement fallback for users without JS
 
 
-## Odkazy a zdroje
+## Links and Resources
 
 - **Vanilla-cookieconsent:** https://github.com/orestbida/cookieconsent
 - **Google Consent Mode v2:** https://developers.google.com/tag-platform/security/guides/consent
 
 ---
 
-*Plugin je připraven pro produkční nasazení s plnou GDPR compliance a modern security standards.*  
-*Postaveno na [vanilla-cookieconsent](https://github.com/orestbida/cookieconsent) od Orest Bida.*
+*The plugin is ready for production deployment with full GDPR compliance and modern security standards.*  
+*Built on [vanilla-cookieconsent](https://github.com/orestbida/cookieconsent) by Orest Bida.*
